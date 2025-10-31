@@ -1,0 +1,533 @@
+:root {
+  --bg-dark: #0a0a0a;
+  --green: #05DF72;
+  --green-dark: #45bc81;
+  --text-light: #e6e6e6;
+  --font-main: 'Share Tech Mono', monospace;
+}
+
+body {
+    background: var(--bg-dark);
+  background-image: url("MatrixRain.png");
+ 
+  color: var(--text-light);
+  margin: 0;
+  font-family: var(--font-main);
+  scroll-behavior: smooth;
+}
+
+/* HEADER / NAVBAR */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 5%;
+   
+}
+  
+
+
+header .logo img {
+  height: 75px;
+  width: auto;
+  filter: drop-shadow(0 0 6px rgba(0, 255, 153, 0.5));
+}
+
+nav ul {
+  display: flex;
+  gap: 3rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  color: var(--text-light);
+  text-decoration: none;
+  transition: 0.3s;
+  padding:3px;
+  font-size: 18px;
+}
+
+nav a:hover {
+  color: var(--green);
+}
+
+/* ========= DROPDOWN ========= */
+.dropdown {
+  position: relative;
+}
+
+/* Dropdown link: ensures arrow + text aligned horizontally */
+.dropdown-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* spacing between text and arrow */
+  cursor: pointer;
+}
+
+/* Arrow inside a white circle */
+.dropdown-arrow {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #fff; /* white border circle */
+  border-radius: 50%;
+  font-size: 0.8rem;
+  line-height: 1;
+  transition: 0.3s ease;
+}
+
+/* Hover effect for arrow circle */
+.dropdown-link:hover .dropdown-arrow {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--bg-dark);
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+  position: absolute;
+  top: 100%; /* directly below the parent */
+  left: 0;
+  background: #111;
+  border: 1px solid rgba(0, 255, 153, 0.3); 
+  border-radius: 6px;
+  width: 150px;
+  list-style: none;
+  display: none; /* hidden by default */
+  flex-direction: column;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  padding: 0;
+  margin:0;
+}
+
+/* Show dropdown on hover of the entire dropdown container */
+.dropdown:hover .dropdown-menu {
+  display: flex;
+}
+
+.dropdown-menu li {
+  margin: 0;          
+  padding: 0;
+  line-height: 1;
+}
+
+/* Dropdown links */
+.dropdown-menu li a {
+  display: block;
+  color: var(--text-light);
+  text-decoration: none;
+  transition: 0.25s ease;
+  padding: 0rem 1rem;
+   line-height: 1;
+}
+
+/* Hover effect for dropdown items */
+.dropdown-menu li a:hover {
+  color: var(--green);
+}
+
+.dropdown-arrow1{
+    display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border:2px solid #00ff99;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  line-height: 1;
+  transition: 0.3s ease;
+}
+
+/* BUTTONS */
+.header-buttons a {
+  margin-left: 1rem;
+}
+
+.btn-outline {
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  border: 2px solid var(--green);
+  transition: 0.3s;
+  cursor: default; 
+}
+
+.btn-outline1 {
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  border: 2px solid var(--green);
+  transition: 0.3s;
+  cursor: default; 
+   color: var(--green);
+background-color: #05DF7240;
+}
+
+.btn-outline {
+  color: var(--green);
+}
+.btn-outline:hover,
+.btn-outline1:hover {
+  background: var(--green-dark);
+  color: var(--bg-dark);
+  transform: translateY(-2px); 
+}
+
+
+/* ===== HERO SECTION ===== */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 5%;
+  color: var(--text-light);
+  position: relative;
+  overflow: hidden;
+}
+
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0, 255, 153, 0.08), transparent 70%);
+  z-index: 0;
+}
+
+.hero-content {
+  max-width: 55%;
+  z-index: 1;
+  
+  
+}
+
+
+
+
+.hero-content .tagline {
+  display: inline-block;
+  background: rgba(0, 255, 153, 0.15); /* subtle background */
+  color: var(--green);
+  padding: 0.8rem 1.6rem; /* bigger box */
+  border-radius: 25px;
+  font-size: 1.1rem; /* slightly larger text */
+  letter-spacing: 0.5px;
+  margin-bottom: 1.2rem;
+  border: 0.1px solid var(--green); /* green border */
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  color: var(--green);
+  line-height: 1.2;
+  margin: 0 0 2rem;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+ .btn-fill {
+  display: inline-flex; /* makes it a flex container */
+  align-items: center;  /* vertically center text and arrow */
+  justify-content: center; /* optional, centers content horizontally */
+  background: white;
+  color: black;
+  border-radius: 25px;
+  padding: 0.6rem 1.4rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+  gap: 0.8rem; /* space between text and arrow */
+}
+
+.btn-fill:hover {
+  transform: translateY(-2px);
+}
+
+.dropdown-arrow2 {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border: 2px solid black;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  line-height: 1;
+  transition: 0.3s ease;
+}
+
+.line{
+    border: 10px solid  #05DF72 ;
+}
+
+
+
+/* ===== HERO IMAGE ===== */
+.hero-image {
+  width: 50%; /* increased from 40% to 50% */
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+}
+
+.hero-image img {
+  width: 100%; /* take full container width */
+  max-width: 600px; /* increased from 450px */
+  filter: drop-shadow(0 0 20px rgba(0, 255, 153, 0.4));
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero-content {
+    max-width: 100%;
+  }
+  .hero-image {
+    width: 80%;
+    margin-top: 2rem;
+  }
+}
+
+
+/* ===== FOOTER SECTION ===== */
+
+.footer {
+  background: #0a0a0a;
+  padding-top: 5rem; /* space for underline */
+  border-top: 4px solid;
+  border-image-source: linear-gradient(
+    90deg,
+    rgba(5, 223, 114, 0) 0%,
+    #05DF72 50%,
+    rgba(5, 223, 114, 0) 100%
+  );
+  border-image-slice: 1;
+  padding: 4rem 5% 2rem;
+  color: var(--text-light);
+  font-family: var(--font-main);
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1.2fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* Row for logo + text */
+.footer-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Keep the rest vertically stacked */
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+
+
+.footer-logo {
+  height: 100px;
+  width: auto;
+  filter: drop-shadow(0 0 6px rgba(0, 255, 153, 0.5));
+}
+
+.footer-brand h2 {
+  color: var(--green);
+  margin: 0.5rem 0 1rem;
+  font-size: 2.5rem;
+}
+
+.footer-brand p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  color: #ccc;
+}
+
+/* Social Media Icons Wrapper */
+.footer-socials {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Each Icon Circle */
+.footer-socials a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+
+  border: 2px solid var(--green);
+  border-radius: 50%;
+
+  color: var(--green);
+  font-size: 1.2rem;
+
+  transition: 0.3s ease;
+  text-decoration: none;
+}
+
+/* Hover Effects: Glow + Scale */
+.footer-socials a:hover {
+  background: var(--green);
+  color: var(--bg-dark);
+
+  box-shadow: var(--green);
+
+  transform: scale(1.15);
+}
+
+
+/* Footer Links */
+.footer-links h4 {
+  color: var(--green);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.6rem;
+}
+
+.footer-links a {
+  color: #ccc;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-links a:hover {
+  color: var(--green);
+}
+
+/* Newsletter Section */
+.footer-newsletter h4 {
+  color: var(--green);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.footer-newsletter p {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  color: #ccc;
+}
+
+.footer-newsletter form {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.footer-newsletter input {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: 1px solid rgba(0, 255, 153, 0.4);
+  border-radius: 20px;
+  background: #111;
+  color: var(--text-light);
+  font-family: var(--font-main);
+}
+
+.footer-newsletter input::placeholder {
+  color: #777;
+}
+
+.footer-newsletter button {
+  background: var(--green);
+  color: var(--bg-dark);
+  border: none;
+  border-radius: 20px;
+  padding: 0.6rem 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.footer-newsletter button:hover {
+  background: var(--green-dark);
+  transform: translateY(-2px);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  border-top: 1px solid rgba(0, 255, 153, 0.1);
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #999;
+}
+
+.footer-bottom a {
+  color: var(--green);
+  text-decoration: none;
+  margin: 0 0.3rem;
+  transition: 0.3s;
+}
+
+.footer-bottom a:hover {
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-newsletter form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .footer-newsletter button {
+    width: 100%;
+  }
+}
