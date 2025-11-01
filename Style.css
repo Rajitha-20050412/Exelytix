@@ -1,3 +1,4 @@
+
 :root {
   --bg-dark: #0a0a0a;
   --green: #05DF72;
@@ -464,10 +465,13 @@ background-color: #05DF7240;
 }
 
 .footer-links ul {
-  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
   padding: 0;
   margin: 0;
 }
+
 
 .footer-links li {
   margin-bottom: 0.6rem;
@@ -575,6 +579,9 @@ background-color: #05DF7240;
     width: 100%;
   }
 }
+
+
+
 
 :root {
   --green: #05df72;
