@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exelytix | AI-Powered Executive Intelligence</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --primary-color: #00ff80;
+  --secondary-color: #0d0d0d;
+  --text-color: #e6e6e6;
+  --font-main: 'Share Tech Mono', monospace;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-main);
+  scroll-behavior: smooth;
+}
+
+/* Body */
+body {
+  background: radial-gradient(circle at top, #000, #050505 70%);
+  color: var(--text-color);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Matrix canvas (now slightly darker & blurred) */
+canvas#matrix-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: black;
+  filter: brightness(0.55) blur(0.8px); /* slightly brighter & softer */
+  pointer-events: none;
+}
+
+/* ===== LEADERSHIP SECTION ===== */
+#leadership {
+  padding: 80px 8%;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+#leadership h2 {
+  font-size: 2.8rem;
+  color: var(--primary-color);
+  text-shadow: 0 0 10px var(--primary-color);
+  margin-bottom: 15px;
+}
+
+.leadership-subtitle {
+  color: var(--text-color);
+  opacity: 0.9;
+  font-size: 1.1rem;
+  max-width: 900px;
+  margin: 0 auto 60px;
+  line-height: 1.6;
+}
+
+/* ===== LEADER CONTAINER ===== */
+.leader-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  background: rgba(0, 10, 0, 0.7);
+  border: 1px solid rgba(0, 255, 128, 0.25);
+  border-radius: 18px;
+  padding: 50px 60px;
+  gap: 60px;
+  box-shadow: 0 0 25px rgba(0, 255, 128, 0.1);
+  backdrop-filter: blur(6px);
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.leader-container:hover {
+  border-color: rgba(0, 255, 128, 0.45);
+  box-shadow: 0 0 30px rgba(0, 255, 128, 0.3);
+}
+
+/* ===== LEFT SIDE ===== */
+.leader-left {
+  flex: 1;
+  text-align: center;
+  border-right: 1px solid rgba(0, 255, 128, 0.1);
+  padding-right: 40px;
+}
+
+.leader-left img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid var(--primary-color);
+  box-shadow: 0 0 50px rgba(0, 255, 128, 0.4);
+  margin-bottom: 20px;
+}
+
+.leader-left h3 {
+  color: var(--primary-color);
+  font-size: 1.6rem;
+  margin-bottom: 5px;
+}
+
+.leader-left .role {
+  color: var(--text-color);
+  opacity: 0.85;
+  font-size: 1rem;
+  margin-bottom: 25px;
+}
+
+/* ===== BUTTONS ===== */
+.leader-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.leader-btn {
+  background: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  padding: 8px 18px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.leader-btn:hover {
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  box-shadow: 0 0 12px rgba(0, 255, 128, 0.6);
+}
+
+/* ===== RIGHT SIDE ===== */
+.leader-right {
+  flex: 2;
+  color: var(--text-color);
+}
+
+.leader-right h4 {
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  text-shadow: 0 0 6px var(--primary-color);
+  margin-bottom: 15px;
+}
+
+.leader-right p {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin-bottom: 18px;
+  line-height: 1.6;
+}
+
+/* ===== INFO BOX ===== */
+.leader-info {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+.info-box {
+  flex: 1;
+  border-left: 2px solid var(--primary-color);
+  padding-left: 15px;
+}
+
+.info-box h5 {
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.info-box p {
+  color: var(--text-color);
+  opacity: 0.85;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+  .leader-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 30px;
+  }
+
+  .leader-left {
+    border-right: none;
+    padding-right: 0;
+    border-bottom: 1px solid rgba(0, 255, 128, 0.15);
+    padding-bottom: 25px;
+  }
+
+  .leader-right {
+    text-align: left;
+  }
+
+  .leader-info {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+/* ===== EXPERIENCE SECTION ===== */
+#experience {
+  padding: 80px 8%;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+#experience h2 {
+  font-size: 2.6rem;
+  color: var(--primary-color);
+  text-shadow: 0 0 10px var(--primary-color);
+  margin-bottom: 40px;
+}
+
+/* ===== CONTAINER ===== */
+.experience-container {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* ===== CARD ===== */
+.experience-card {
+  display: flex;
+  align-items: flex-start;
+  background: rgba(0, 10, 0, 0.7);
+  border: 1px solid rgba(0, 255, 128, 0.25);
+  border-radius: 16px;
+  padding: 30px 35px;
+  box-shadow: 0 0 25px rgba(0, 255, 128, 0.08);
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+}
+
+.experience-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 30px rgba(0, 255, 128, 0.3);
+}
+
+/* ===== ICON ===== */
+.icon {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-right: 25px;
+  flex-shrink: 0;
+  text-shadow: 0 0 8px var(--primary-color);
+}
+
+/* ===== CONTENT ===== */
+.experience-content h3 {
+  color: var(--primary-color);
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  text-shadow: 0 0 6px var(--primary-color);
+}
+
+.experience-content p {
+  color: var(--text-color);
+  opacity: 0.9;
+  font-size: 1rem;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+/* ===== LIST ===== */
+.experience-content ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.experience-content li {
+  color: var(--text-color);
+  font-size: 0.95rem;
+  opacity: 0.85;
+  padding-left: 15px;
+  position: relative;
+}
+
+.experience-content li::before {
+  content: "▹";
+  color: var(--primary-color);
+  position: absolute;
+  left: 0;
+  text-shadow: 0 0 5px var(--primary-color);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .experience-card {
+    flex-direction: column;
+    text-align: left;
+    padding: 25px 25px;
+  }
+
+  .icon {
+    margin-bottom: 10px;
+  }
+
+  .experience-content ul {
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+/* ===== LEADERSHIP PHILOSOPHY ===== */
+#leadership-philosophy {
+  padding: 80px 8%;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+#leadership-philosophy h2 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  text-shadow: 0 0 10px var(--primary-color);
+  margin-bottom: 40px;
+}
+
+/* ===== CARD ===== */
+.philosophy-card {
+  background: rgba(0, 10, 0, 0.7);
+  border: 1px solid rgba(0, 255, 128, 0.25);
+  border-radius: 18px;
+  padding: 50px 60px;
+  max-width: 1000px;
+  margin: 0 auto;
+  box-shadow: 0 0 25px rgba(0, 255, 128, 0.1);
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+}
+
+.philosophy-card:hover {
+  border-color: rgba(0, 255, 128, 0.4);
+  box-shadow: 0 0 35px rgba(0, 255, 128, 0.3);
+}
+
+/* ===== QUOTE ===== */
+.philosophy-card .quote {
+  font-style: italic;
+  color: var(--text-color);
+  opacity: 0.9;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+  line-height: 1.7;
+}
+
+/* ===== GRID ===== */
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  text-align: left;
+}
+
+.philosophy-item h4 {
+  color: var(--primary-color);
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
+
+.philosophy-item p {
+  color: var(--text-color);
+  opacity: 0.85;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ===== CONNECT SECTION ===== */
+#connect-leadership {
+  padding: 80px 8%;
+  text-align: center;
+}
+
+#connect-leadership h3 {
+  color: var(--primary-color);
+  font-size: 2rem;
+  text-shadow: 0 0 10px var(--primary-color);
+  margin-bottom: 20px;
+}
+
+#connect-leadership p {
+  color: var(--text-color);
+  opacity: 0.9;
+  max-width: 800px;
+  margin: 0 auto 35px;
+  line-height: 1.6;
+}
+
+/* ===== BUTTONS ===== */
+.connect-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btn-primary,
+.btn-secondary {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 12px 28px;
+  border-radius: 25px;
+  border: 2px solid var(--primary-color);
+  transition: all 0.3s ease;
+}
+
+/* Primary */
+.btn-primary {
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  box-shadow: 0 0 10px rgba(0, 255, 128, 0.4);
+}
+
+.btn-primary:hover {
+  background: transparent;
+  color: var(--primary-color);
+  box-shadow: 0 0 15px rgba(0, 255, 128, 0.6);
+}
+
+/* Secondary */
+.btn-secondary {
+  background: transparent;
+  color: var(--primary-color);
+}
+
+.btn-secondary:hover {
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  box-shadow: 0 0 12px rgba(0, 255, 128, 0.6);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .philosophy-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .philosophy-card {
+    padding: 40px 25px;
+  }
+
+  .connect-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+  <!-- ====== HEADER / NAVBAR ====== -->
+  <header>
+   <a href="Home.html"> <div class="logo"><img src="logo.png"></div></a>
+
+    <nav>
+      <ul>
+        <li><a href="Home.html">Home</a></li>
+        <li class="dropdown">
+         <a href="#company" class="dropdown-link">Company <span class="dropdown-arrow">  ▾  </span></a>
+    <ul class="dropdown-menu">
+      <li><a href="#what-we-do">What We Do</a></li>
+      <li><a href="#who-we-are">Who We Are</a></li>
+      <li><a href="leadership.html">Leadership</a></li>
+    </ul>
+      </li>
+
+
+        <li><a href="services.html">Services</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-buttons">
+      <a href="contact.html" class="btn-outline">Contact Us <span class="dropdown-arrow1">  ➔  </span></a>
+      <a href="request.html" class="btn-outline1">Request Demo <span class="dropdown-arrow1">  ➔  </span></a>
+    </div>
+  </header>
+
+  <section id="leadership">
+  <h2>Leadership</h2>
+  <p class="leadership-subtitle">
+    Meet the visionary leader driving Exelytix's mission to transform executive operations 
+    through precision-driven support and AI-powered solutions.
+  </p>
+
+  <div class="leader-container">
+    <div class="leader-left">
+      <img src="leader.jpg" alt="Ushodhar Raju">
+      <h3>Ushodhar Raju</h3>
+      <p class="role">CEO & Founder</p>
+      <div class="leader-buttons">
+        <a href="#" class="leader-btn">🔗 LinkedIn</a>
+        <a href="#" class="leader-btn">✉️ Contact</a>
+      </div>
+    </div>
+
+    <div class="leader-right">
+      <h4>About Ushodhar</h4>
+      <p>
+        Ushodhar Raju is the Founder and CEO of Exelytix, a technology-driven platform 
+        that delivers AI-powered and executive support solutions designed to enhance clarity, 
+        control, and productivity. His mission is to transform how professionals manage 
+        operations through intelligent, data-driven systems.
+      </p>
+      <p>
+        Committed to operational excellence and innovation, he has built Exelytix into a 
+        platform that combines automation with human expertise—empowering teams to make 
+        better decisions and operate efficiently.
+      </p>
+
+      <div class="leader-info">
+        <div class="info-box">
+          <h5>🎓 Education</h5>
+          <p>
+            Commerce Graduate from Sri Venkateshwara University, with deep expertise in 
+            administrative functions and governance.
+          </p>
+        </div>
+
+        <div class="info-box">
+          <h5>💼 Current Role</h5>
+          <p>
+            Chief Financial Officer at Srinivasa Trust, overseeing financial strategy and 
+            operational performance.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <h2>Professional Experience</h2>
+
+  <div class="experience-container">
+
+    <div class="experience-card">
+      <div class="icon">💼</div>
+      <div class="experience-content">
+        <h3>Searce Inc</h3>
+        <p>
+          Contributed expertise to this leading cloud consulting and technology services company, 
+          gaining valuable experience in enterprise-level operations and digital transformation.
+        </p>
+        <ul>
+          <li>Enterprise consulting and strategic planning</li>
+          <li>Cloud technology implementation</li>
+          <li>Operational excellence initiatives</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="experience-card">
+      <div class="icon">📊</div>
+      <div class="experience-content">
+        <h3>Deloitte</h3>
+        <p>
+          Gained extensive experience at one of the world’s top professional services firms, 
+          specializing in business operations, analytics, and strategic consulting.
+        </p>
+        <ul>
+          <li>Business process optimization</li>
+          <li>Data analytics and insights</li>
+          <li>Strategic advisory services</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="experience-card">
+      <div class="icon">🏢</div>
+      <div class="experience-content">
+        <h3>Srinivasa Trust – Chief Financial Officer</h3>
+        <p>
+          Currently serves as CFO, overseeing financial operations and strategic planning while 
+          driving operational excellence across the organization.
+        </p>
+        <ul>
+          <li>Financial strategy and planning</li>
+          <li>Operational oversight and optimization</li>
+          <li>Stakeholder management</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+  <section id="leadership-philosophy">
+  <h2>Leadership Philosophy</h2>
+
+  <div class="philosophy-card">
+    <p class="quote">
+      “Technology should enhance human potential, not replace it. 
+      At Exelytix, we believe in creating solutions that amplify human intelligence and creativity 
+      while bringing clarity, calm, and control to our clients’ operations.”
+    </p>
+
+    <div class="philosophy-grid">
+      <div class="philosophy-item">
+        <h4>Innovation with Purpose</h4>
+        <p>
+          Every innovation serves a clear purpose — to enhance human productivity and create
+          meaningful impact in clients’ lives.
+        </p>
+      </div>
+
+      <div class="philosophy-item">
+        <h4>Human-Centric Approach</h4>
+        <p>
+          Our solutions leverage AI without losing the human touch — empowering people,
+          not replacing them.
+        </p>
+      </div>
+
+      <div class="philosophy-item">
+        <h4>Operational Excellence</h4>
+        <p>
+          We uphold the highest standards of quality and precision, ensuring every service
+          reflects excellence.
+        </p>
+      </div>
+
+      <div class="philosophy-item">
+        <h4>Continuous Growth</h4>
+        <p>
+          We constantly evolve and adapt to meet modern leadership and organizational needs.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="connect-leadership">
+  <h3>Connect with Our Leadership</h3>
+  <p>
+    Want to learn more about our mission and approach? Let’s start a conversation about 
+    how Exelytix can transform your operations.
+  </p>
+  <div class="connect-buttons">
+    <a href="#" class="btn-primary">Schedule a Meeting →</a>
+    <a href="#" class="btn-secondary">Get in Touch</a>
+  </div>
+</section>
+
+<!-- ====== FOOTER SECTION ====== -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- ===== Left: Brand + Description ===== -->
+    <div class="footer-brand">
+       <div class="footer-brand-row">
+      <img src="logo.png" alt="Exelytix Logo" class="footer-logo" />
+      <h2>Exelytix</h2>
+       </div>
+      <p>Empowering executives with AI-driven intelligence for the future of work.</p>
+      <div class="footer-socials">
+        <a href="https://x.com/ushodharraju"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.linkedin.com/company/exelytix/posts/?feedView=all"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://api.whatsapp.com/send/?phone=919392972245&text&type=phone_number&app_absent=0"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/exelytix/"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+
+    <!-- ===== Middle: Company Links ===== -->
+    <div class="footer-links">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#who-we-are">Who We Are</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="leadership.html">Leadership</a></li>
+      </ul>
+    </div>
+
+    <!-- ===== Product Links ===== -->
+    <div class="footer-links">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="request.html">Request Demo</a></li>
+      </ul>
+    </div>
+
+    
+
+    <!-- ===== Newsletter Section ===== -->
+    <div class="footer-newsletter">
+      <h4>Newsletter</h4>
+      <p>Stay updated with the latest AI innovations and insights.</p>
+      <form>
+        <input type="email" placeholder="your@email.com" required />
+        <button type="submit">Subscribe <span>➔</span></button>
+      </form>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 Exelytix. All rights reserved. 
+      <a href="#">Privacy Policy</a> • 
+      <a href="#">Terms of Service</a> • 
+      <a href="#">Accessibility</a> • 
+      <a href="#">Security</a>
+    </p>
+  </div>
+</footer>
+<script>
+const canvas = document.createElement("canvas");
+canvas.id = "matrix-bg";
+document.body.appendChild(canvas);
+
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
+const fontSize = 16;
+const columns = Math.floor(canvas.width / fontSize);
+const drops = Array(columns).fill(1);
+
+function drawMatrix() {
+  // darker background trails for better readability
+  ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // dimmer neon green text
+  ctx.fillStyle = "rgba(0, 255, 128, 0.55)";
+  ctx.font = fontSize + "px monospace";
+
+  drops.forEach((y, i) => {
+    const text = characters.charAt(Math.floor(Math.random() * characters.length));
+    ctx.fillText(text, i * fontSize, y * fontSize);
+
+    if (y * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+    drops[i]++;
+  });
+}
+
+setInterval(drawMatrix, 35);
+
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+</script>
+
+
+  </body>
+  </html>
+
+
+ 
